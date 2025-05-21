@@ -44,3 +44,15 @@ class IngressoViewSet(viewsets.ModelViewSet):
 
     def get(self, request):
         return Response({"message": "Apenas usuários autenticados podem acessar esta view"})
+
+
+class CheckoutFIlmeViewSet(viewsets.ModelViewSet):
+    queryset = Ingresso.objects.all()
+    serializer_class = CheckoutSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = CheckoutFilter
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"message": "Apenas usuários autenticados podem acessar esta view"})
+
