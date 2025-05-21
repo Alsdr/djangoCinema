@@ -1,12 +1,12 @@
 from django.db import models
 
 
-
 class ModelBase(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         abstract = True
+
 
 class Cliente(ModelBase):
     cliente_id = models.AutoField(primary_key=True)
@@ -16,6 +16,7 @@ class Cliente(ModelBase):
     def __str__(self):
         return self.Nome
 
+
 class Filme(ModelBase):
     filme_id = models.AutoField(primary_key=True)
     Titulo = models.CharField(max_length=200)
@@ -24,6 +25,7 @@ class Filme(ModelBase):
 
     def __str__(self):
         return self.Titulo
+
 
 class Checkout(ModelBase):
     checkout_id = models.AutoField(primary_key=True)
@@ -34,7 +36,8 @@ class Checkout(ModelBase):
     def __str__(self):
         return f"Checkout {self.checkout_id}"
 
-class Checkout_Filme(ModelBase):
+
+class CheckoutFilme(ModelBase):
     checkout_filme_id = models.AutoField(primary_key=True)
     Data = models.DateField()
     Horario = models.TimeField()
@@ -43,6 +46,7 @@ class Checkout_Filme(ModelBase):
 
     def __str__(self):
         return f"Filme {self.filme_id} em {self.Data} às {self.Horario}"
+
 
 class Ingresso(ModelBase):
     ingresso_id = models.AutoField(primary_key=True)
@@ -53,28 +57,3 @@ class Ingresso(ModelBase):
 
     def __str__(self):
         return f"Ingresso {self.ingresso_id} - Cliente {self.cliente_id}"
-
-
-class Cliente(ModelBase):
-    cliente_id = models.AutoField(primary_key=True)
-    CPF = models.CharField(max_length=11, unique=True)
-    Nome = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.Nome} ({self.CPF})"
-class Filme(ModelBase):
-    filme_id = models.AutoField(primary_key=True)
-    Titulo = models.CharField(max_length=200)
-    Duracao = models.PositiveIntegerField()
-    sessao_id = models.IntegerField()  # ou models.ForeignKey(Sessao, ...)
-
-    def __str__(self):
-        return self.Titulo
-class Filme(ModelBase):
-    filme_id = models.AutoField(primary_key=True)
-    Titulo = models.CharField(max_length=200)
-    Duracao = models.PositiveIntegerField()
-    sessao_id = models.IntegerField()  # ou models.ForeignKey(Sessao, ...)
-
-    def __str__(self):
-        return self.Titulo

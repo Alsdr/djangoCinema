@@ -1,5 +1,5 @@
 import django_filters
-from Ingressos.models import Cliente, Filme, Ingresso, Checkout_Filme, Checkout
+from Ingressos.models import Cliente, Filme, Ingresso, CheckoutFilme, Checkout
 
 
 class ClientFilter(django_filters.FilterSet):
@@ -37,7 +37,7 @@ class CheckoutFilmeFilter(django_filters.FilterSet):
     quantidade = django_filters.RangeFilter()
 
     class Meta:
-        model = Checkout_Filme
+        model = CheckoutFilme
         fields = ['id', 'filme', 'preco', 'quantidade']
 
 class CheckoutFilter(django_filters.FilterSet):
